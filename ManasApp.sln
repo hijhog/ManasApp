@@ -7,21 +7,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{745FE69D-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{00FA3BC4-827A-4153-AEEF-344A367B88B9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{C30B6000-4C8C-4025-88C2-DD21972218EF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{F3CA4C83-310B-439D-A7A9-4E531038E886}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManasMobile", "Mobile\ManasMobile\ManasMobile.csproj", "{C10AEA4C-9854-4E75-A2C7-E90839EBC8FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManasApp.Data", "Data\ManasApp.Data\ManasApp.Data.csproj", "{ED8E3E06-00CB-44C4-A53A-4D1D7382F701}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManasApp.Data", "Data\ManasApp.Data\ManasApp.Data.csproj", "{ED8E3E06-00CB-44C4-A53A-4D1D7382F701}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManasApp.Data.Contract", "Data\ManasApp.Data.Contract\ManasApp.Data.Contract.csproj", "{C32C7A88-1CF2-41F7-8CF2-F3971DA059BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManasApp.Data.Contract", "Data\ManasApp.Data.Contract\ManasApp.Data.Contract.csproj", "{C32C7A88-1CF2-41F7-8CF2-F3971DA059BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManasApp.Services", "Services\ManasApp.Services\ManasApp.Services.csproj", "{D2F2FA5C-90D6-45F2-9E2D-863B742A05E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManasApp.Services", "Services\ManasApp.Services\ManasApp.Services.csproj", "{D2F2FA5C-90D6-45F2-9E2D-863B742A05E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManasApp.Services.Contract", "Services\ManasApp.Services.Contract\ManasApp.Services.Contract.csproj", "{9399148F-AECE-4ABC-819A-6F1220E2F6D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManasApp.Services.Contract", "Services\ManasApp.Services.Contract\ManasApp.Services.Contract.csproj", "{9399148F-AECE-4ABC-819A-6F1220E2F6D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManasApp.WebAPI", "Web\ManasApp.WebAPI\ManasApp.WebAPI.csproj", "{32A8AF53-FF00-44D6-A65E-738806634544}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManasApp.WebAPI", "Web\ManasApp.WebAPI\ManasApp.WebAPI.csproj", "{32A8AF53-FF00-44D6-A65E-738806634544}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E6EEB55E-34D5-440A-ADC9-FFCEEBB2BDD5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManasApp.Common", "Common\ManasApp.Common\ManasApp.Common.csproj", "{C237C1FD-CDD5-424D-A8D9-849BE8107356}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C10AEA4C-9854-4E75-A2C7-E90839EBC8FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C10AEA4C-9854-4E75-A2C7-E90839EBC8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C10AEA4C-9854-4E75-A2C7-E90839EBC8FE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{C10AEA4C-9854-4E75-A2C7-E90839EBC8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C10AEA4C-9854-4E75-A2C7-E90839EBC8FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C10AEA4C-9854-4E75-A2C7-E90839EBC8FE}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{ED8E3E06-00CB-44C4-A53A-4D1D7382F701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED8E3E06-00CB-44C4-A53A-4D1D7382F701}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED8E3E06-00CB-44C4-A53A-4D1D7382F701}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,17 +49,21 @@ Global
 		{32A8AF53-FF00-44D6-A65E-738806634544}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32A8AF53-FF00-44D6-A65E-738806634544}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32A8AF53-FF00-44D6-A65E-738806634544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C237C1FD-CDD5-424D-A8D9-849BE8107356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C237C1FD-CDD5-424D-A8D9-849BE8107356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C237C1FD-CDD5-424D-A8D9-849BE8107356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C237C1FD-CDD5-424D-A8D9-849BE8107356}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C10AEA4C-9854-4E75-A2C7-E90839EBC8FE} = {C30B6000-4C8C-4025-88C2-DD21972218EF}
 		{ED8E3E06-00CB-44C4-A53A-4D1D7382F701} = {745FE69D-D4A7-4635-AD9D-FE9913BC153D}
 		{C32C7A88-1CF2-41F7-8CF2-F3971DA059BD} = {745FE69D-D4A7-4635-AD9D-FE9913BC153D}
 		{D2F2FA5C-90D6-45F2-9E2D-863B742A05E8} = {00FA3BC4-827A-4153-AEEF-344A367B88B9}
 		{9399148F-AECE-4ABC-819A-6F1220E2F6D9} = {00FA3BC4-827A-4153-AEEF-344A367B88B9}
 		{32A8AF53-FF00-44D6-A65E-738806634544} = {F3CA4C83-310B-439D-A7A9-4E531038E886}
+		{C237C1FD-CDD5-424D-A8D9-849BE8107356} = {E6EEB55E-34D5-440A-ADC9-FFCEEBB2BDD5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33942444-1959-4CB8-904B-1CFB2420D8E0}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:main="clr-namespace:ManasApp.Mobile.Modules.Main"
+       xmlns:locality="clr-namespace:ManasApp.Mobile.Modules.Localities"
+       xmlns:map="clr-namespace:ManasApp.Mobile.Modules.Map"
+       Title="ManasApp.Mobile"
+       x:Class="ManasApp.Mobile.AppShell"
+       >
+    <Shell.Resources>
+        <Style TargetType="TabBar">
+            <Setter Property="Shell.TabBarBackgroundColor"
+            Value="CornflowerBlue" />
+            <Setter Property="Shell.TabBarTitleColor"
+            Value="Black" />
+            <Setter Property="Shell.TabBarUnselectedColor"
+            Value="AntiqueWhite" />
+        </Style>
+    </Shell.Resources>    
+
+
+    <TabBar FlyoutDisplayOptions="AsMultipleItems"
+            >
+        <Tab Icon="main_18.png"
+             Title="Main">
+            <ShellContent Title="Main"
+                          ContentTemplate="{DataTemplate main:MainPage}"></ShellContent>
+        </Tab>
+        <Tab Icon="main_18.png"
+             Title="Localities">
+            <ShellContent Title="Localities"
+                          ContentTemplate="{DataTemplate locality:LocalitiesPage}"></ShellContent>
+        </Tab>
+        <Tab Icon="main_18.png"
+             Title="Map">
+            <ShellContent Title="Map"
+                          ContentTemplate="{DataTemplate map:MapPage}"></ShellContent>
+        </Tab>
+    </TabBar>
+    
+</Shell>
