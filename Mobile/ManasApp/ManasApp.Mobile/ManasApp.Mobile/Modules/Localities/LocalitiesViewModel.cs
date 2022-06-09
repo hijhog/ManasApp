@@ -13,8 +13,11 @@ namespace ManasApp.Mobile.Modules.Localities
     public class LocalitiesViewModel : BaseViewModel
     {
         private readonly ILocalityController _localityController;
+        private int page = 1;
+        private string searchText = string.Empty;
 
         public Command RemainingItemsThresholdReachedCommand { get; set; }
+        public Command TappedCommand { get; set; }
 
 
         private bool _isBusy;
@@ -34,22 +37,23 @@ namespace ManasApp.Mobile.Modules.Localities
         public LocalitiesViewModel(ILocalityController localityController)
         {
             _localityController = localityController;
-            Localities = new ObservableCollection<Locality>();
+            Localities = new ObservableCollection<Locality>();            
 
-            var description = string.Join(" ", Enumerable.Repeat("Template description", 4));
-            var length = Localities.Count;
-            for (int i = 0; i < 20; i++)
+            RemainingItemsThresholdReachedCommand = new Command(async () => await GetItemsAsync());
+            TappedCommand = new Command<Locality>(OpenDetails);
+        }
+
+        public async Task InitialLocalities()
+        {
+            if (!string.IsNullOrEmpty(searchText))
+                return;
+
+            var collection = await _localityController.GetScrollLocalitiesAsync(string.Empty, GetNextPage()).ConfigureAwait(false);
+
+            foreach (var locality in collection)
             {
-                _localities.Add(new Locality
-                {
-                    Id = Guid.NewGuid(),
-                    Name = $"Locality #{length + i}",
-                    Description = description,
-                    MapId = (new Random().Next(0, 1) == 0) ? Guid.NewGuid() : (Guid?)null
-                });
+                _localities.Add(locality);
             }
-
-            RemainingItemsThresholdReachedCommand = new Command(async () => await GetItemsAsync(15));
         }
 
         private ObservableCollection<Locality> _localities;
@@ -80,35 +84,68 @@ namespace ManasApp.Mobile.Modules.Localities
             set { SetProperty(ref _mapId, value); }
         }
 
-        public async Task GetItemsAsync(int count)
+        public async Task GetItemsAsync()
         {
             if (_isBusy) 
                 return;
 
             IsBusy = true;
             IsLoading = true;
-            var list = new List<Locality>();
-            var description = string.Join(" ", Enumerable.Repeat("Template description", 20));
-            var length = Localities.Count;
-            await Task.Delay(3000);
-            IsLoading = false;
-            for (int i = 0; i < count; i++)
-            {
-                _localities.Add(new Locality
-                {
-                    Id = Guid.NewGuid(),
-                    Name = $"Locality #{length + i}",
-                    Description = description,
-                    MapId = (new Random().Next(0, 1) == 0) ? Guid.NewGuid() : (Guid?)null
-                });
 
+            if (!string.IsNullOrEmpty(searchText) && Localities.Count < 15)
+            {
+                IsLoading = false;
+                IsBusy = false;
+                return;
+            }
+
+            var list = await _localityController.GetScrollLocalitiesAsync(searchText, GetNextPage()).ConfigureAwait(false);
+            IsLoading = false;
+
+            foreach (var locality in list)
+            {
+                if(Localities.FirstOrDefault(x=>x.Name == locality.Name) == null)
+                {
+                    Localities.Add(locality);
+                }
+            }
+            
+            IsBusy = false;
+        }
+
+        private async void OpenDetails(Locality model)
+        {
+            if (model == null)
+                return;
+
+            await Shell.Current.GoToAsync($"/localitydetails?id={model.Id}");
+        }
+
+        public async Task SearchLocalities(string searchText)
+        {
+            this.searchText = searchText;
+            if (_isBusy)
+                return;
+
+            IsBusy = true;
+            IsLoading = true;
+            Localities.Clear();
+            var list = await _localityController.GetScrollLocalitiesAsync(searchText, GetNextPage()).ConfigureAwait(false);
+            IsLoading = false;
+
+            foreach (var locality in list)
+            {
+                Localities.Add(locality);
             }
 
             IsBusy = false;
+        }
 
-            //OnPropertyChanged(nameof(Localities));
-
-
+        private int GetNextPage()
+        {
+            int pageSize = 15;
+            int pages = Localities.Count / pageSize;
+            return pages + 1;
         }
     }
 }

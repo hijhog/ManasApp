@@ -7,9 +7,11 @@ namespace ManasApp.Data
     public class AppDbContext : DbContext
     {
         public DbSet<Locality> Localities { get; set; }
+        public DbSet<Map> Maps { get; set; }
+        public DbSet<StorageData> StorageData { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
-            :base(options) { }
+            : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

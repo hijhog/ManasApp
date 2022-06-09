@@ -1,4 +1,6 @@
-﻿namespace ManasApp.Services.Contract.Models
+﻿using System;
+
+namespace ManasApp.Services.Contract.Models
 {
     public abstract class BaseDto
     {

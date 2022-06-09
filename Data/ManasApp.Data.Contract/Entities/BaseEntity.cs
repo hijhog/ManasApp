@@ -1,4 +1,6 @@
-﻿namespace ManasApp.Data.Contract.Entities
+﻿using System;
+
+namespace ManasApp.Data.Contract.Entities
 {
     public abstract class BaseEntity
     {

@@ -5,6 +5,10 @@ using ManasApp.Data.Contract.Entities;
 using ManasApp.Data.Contract.Repositories;
 using ManasApp.Services.Contract.Interfaces;
 using ManasApp.Services.Contract.Models.Locality;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ManasApp.Services
 {
@@ -25,7 +29,7 @@ namespace ManasApp.Services
             try
             {
                 var entity = await _localityRepository.GetAsync(x => x.NormalizedName == dto.Name.ToUpper());
-                if(entity is not null)
+                if(entity != null)
                 {
                     result.ErrorMessage = $"Locality with \"{dto.Name}\" is extists";
                     return result;

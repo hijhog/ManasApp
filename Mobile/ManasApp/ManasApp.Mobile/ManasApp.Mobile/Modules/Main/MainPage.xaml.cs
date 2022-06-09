@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,13 @@ namespace ManasApp.Mobile.Modules.Main
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
+        private readonly MainViewModel viewModel;
         public MainPage()
         {
             InitializeComponent();
+            viewModel = App.Container.Resolve<MainViewModel>();
+
+            BindingContext = viewModel;
         }
     }
 }

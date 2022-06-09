@@ -1,23 +1,25 @@
 ﻿using ManasApp.Services.Contract.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManasApp.WebAPI.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route("api/{controller}/{action}")]
+    [Authorize]
     public class LocalityController : ControllerBase
     {
-        private readonly ILocalityService _localityService;
-        public LocalityController(ILocalityService localityService)
+        //private readonly ILocalityService _localityService;
+
+        public LocalityController()//ILocalityService localityService)
         {
-            _localityService = localityService;
+            //_localityService = localityService;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public ActionResult Get()
         {
-            return Ok(_localityService.GetAll());
+            return Ok("secret");
         }
     }
 }

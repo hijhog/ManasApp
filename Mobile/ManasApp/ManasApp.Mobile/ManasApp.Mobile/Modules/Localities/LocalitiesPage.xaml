@@ -2,38 +2,45 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ManasApp.Mobile.Modules.Localities.LocalitiesPage"
-             xmlns:local="clr-namespace:ManasApp.Mobile.Modules.Localities">
+             xmlns:local="clr-namespace:ManasApp.Mobile.Modules.Localities"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
     <ContentPage.Content>
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <Label Text="Welcome to Locality Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-                <CollectionView ItemsSource="{Binding Localities}"
+                <SearchBar x:Name="searchBar" Placeholder="Search text"
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                           TextChanged="searchBar_TextChanged" />
+                <CollectionView x:Name="myLocalities" 
+                            ItemsSource="{Binding Localities}"
                             RemainingItemsThreshold="1"
                             RemainingItemsThresholdReachedCommand="{Binding RemainingItemsThresholdReachedCommand}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ContentView>
-                                <Frame BackgroundColor="LightGray"
-                                   CornerRadius="10"
-                                   Margin="5,10,5,5">
+                            <StackLayout>
+                                <Frame BackgroundColor="{AppThemeBinding Light=LightGray, Dark=Gray}"
+                                   CornerRadius="8"
+                                   Margin="10,10,10,5">
                                     <StackLayout>
-                                        <Label Text="{Binding Name}"/>
-                                        <Label Text="{Binding Description}"/>
-                                        <Label Text="{Binding MapId}"/>
+                                        <Label Text="{Binding Name}" TextColor="{AppThemeBinding Light=Black, Dark=White}" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Description}" TextColor="{AppThemeBinding Light=Black, Dark=White}" MaxLines="2"/>
+                                        
                                     </StackLayout>
                                 </Frame>
-                            </ContentView>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TappedCommand, 
+                                        Source={RelativeSource AncestorType={x:Type local:LocalitiesViewModel}}}" 
+                                                          CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>
-            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+            <StackLayout AbsoluteLayout.LayoutBounds="0.499,0.9,-1,-1"
                          AbsoluteLayout.LayoutFlags="PositionProportional">
                 <ActivityIndicator 
-                               Color="Blue"
-                               IsRunning="True"
+                               Color="CornflowerBlue"
+                               IsRunning="{Binding IsBusy}"
                                IsVisible="{Binding IsBusy}"
                                HorizontalOptions="Center"
                                VerticalOptions="Center"/>

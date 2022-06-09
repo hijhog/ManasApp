@@ -13,6 +13,7 @@ namespace ManasApp.Data.Configurations
             builder.HasIndex(x => x.NormalizedName).IsUnique();
             builder.Property(x => x.Description).IsRequired();
 
+            builder.HasOne(x => x.Map).WithMany(x => x.Locality).HasForeignKey(x => x.MapId);
         }
     }
 }

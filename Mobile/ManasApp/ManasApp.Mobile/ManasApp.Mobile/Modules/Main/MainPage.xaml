@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ManasApp.Mobile.Modules.Main.MainPage">
+             x:Class="ManasApp.Mobile.Modules.Main.MainPage"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Main Page!"
+                   TextColor="{AppThemeBinding Light=Black, Dark=White}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Image Source="https://www.dropbox.com/s/3wxhw0o1r8u2z1h/photo_2022-05-12_16-22-55.jpg?raw=1" />
+            <Button Text="Get" Command="{Binding DropboxGetCommand}" />
+            <Button Text="Login" Command="{Binding LoginCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

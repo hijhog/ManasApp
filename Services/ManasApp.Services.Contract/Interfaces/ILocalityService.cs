@@ -1,5 +1,8 @@
 ﻿using ManasApp.Common;
 using ManasApp.Services.Contract.Models.Locality;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ManasApp.Services.Contract.Interfaces
 {

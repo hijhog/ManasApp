@@ -1,7 +1,10 @@
 ﻿using ManasApp.Data.Contract.Models;
 using ManasApp.Data.Contract.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace ManasApp.Data.Repositories
 {
@@ -26,17 +29,17 @@ namespace ManasApp.Data.Repositories
             await _table.AddAsync(entity);
         }
 
-        public TEntity? Get(object id)
+        public TEntity Get(object id)
         {
             return _table.Find(id);
         }
 
-        public ValueTask<TEntity?> GetAsync(object id)
+        public ValueTask<TEntity> GetAsync(object id)
         {
             return _table.FindAsync(id);
         }
 
-        public Task<TEntity?> GetAsync(Expression<Func<TEntity,bool>> predicate)
+        public Task<TEntity> GetAsync(Expression<Func<TEntity,bool>> predicate)
         {
             return _table.FirstOrDefaultAsync(predicate);
         }

@@ -1,4 +1,6 @@
-﻿namespace ManasApp.Data.Contract.Models
+﻿using System.Collections.Generic;
+
+namespace ManasApp.Data.Contract.Models
 {
     public class PageViewModel<TEntity>
         where TEntity : class

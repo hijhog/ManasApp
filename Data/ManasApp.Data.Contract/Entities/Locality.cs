@@ -1,4 +1,7 @@
-﻿namespace ManasApp.Data.Contract.Entities
+﻿using System;
+using System.Collections.Generic;
+
+namespace ManasApp.Data.Contract.Entities
 {
     public class Locality : BaseEntity
     {
@@ -8,5 +11,7 @@
 
         public Guid MapId { get; set; }
         public Map Map { get; set; }
+
+        public ICollection<StorageData> StorageData { get; set; }
     }
 }
