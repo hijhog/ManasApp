@@ -17,6 +17,7 @@ namespace ManasApp.Data.Seeder
                 
                 if (!context.Localities.Any())
                 {
+                    /*
                     Map map = new Map
                     {
                         Id = Guid.NewGuid(),
@@ -40,6 +41,7 @@ namespace ManasApp.Data.Seeder
 
                     context.Localities.AddRange(localities);
                     context.SaveChanges();
+                    */
                 }
             }
         }

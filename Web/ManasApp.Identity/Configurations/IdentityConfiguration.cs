@@ -60,8 +60,6 @@ namespace ManasApp.Identity.Configurations
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = { new Secret("web_secret_key".Sha256()) },
                     AllowedScopes = { "myApi.read" },
-
-                    AccessTokenLifetime = 60
                 },
 
                 new Client
@@ -71,9 +69,6 @@ namespace ManasApp.Identity.Configurations
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
                     ClientSecrets = { new Secret("manasapp_secret_key".Sha256()) },
                     AllowedScopes = { "myApi.read" },
-
-                    AccessTokenLifetime = 60,
-                    RefreshTokenUsage = TokenUsage.OneTimeOnly
                 },
             };
     }

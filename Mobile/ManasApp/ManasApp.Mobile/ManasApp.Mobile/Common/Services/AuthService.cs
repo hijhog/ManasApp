@@ -45,30 +45,42 @@ namespace ManasApp.Mobile.Common.Services
 
         public async Task<string> GetAccessToken()
         {
-            if (!IsLoggedIn)
+            try
             {
-                using (var httpClient = new HttpClient())
+                if (!IsLoggedIn)
                 {
-                    var identityServerResponse = await httpClient.RequestDeviceTokenAsync(new DeviceTokenRequest
+                    using (var httpClient = new HttpClient())
                     {
-                        Address = $"{AppSettings.IdentityURL}/connect/token",
-                        GrantType = "client_credentials",
+                        var identityServerResponse = await httpClient.RequestPasswordTokenAsync(new PasswordTokenRequest
+                        {
+                            Address = $"{AppSettings.IdentityURL}/connect/token",
+                            GrantType = "password",
 
-                        ClientId = "manasapp.client",
-                        ClientSecret = "manasapp_secret_key",
-                    });
+                            ClientId = "manasapp.client",
+                            ClientSecret = "manasapp_secret_key",
 
-                    if (!identityServerResponse.IsError)
-                    {
-                        AccessToken = identityServerResponse.AccessToken;
-                        _expires = DateTime.Now.AddSeconds(identityServerResponse.ExpiresIn);
-                    }
-                    else
-                    {
-                        AccessToken = string.Empty;
+                            UserName = "admin",
+                            Password = "12345"
+                        });
+
+                        if (!identityServerResponse.IsError)
+                        {
+                            AccessToken = identityServerResponse.AccessToken;
+                            _expires = DateTime.Now.AddSeconds(identityServerResponse.ExpiresIn);
+                        }
+                        else
+                        {
+                            AccessToken = string.Empty;
+                        }
                     }
                 }
+
             }
+            catch(Exception ex)
+            {
+
+            }
+            
 
             return AccessToken;
         }

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ManasApp.Common\ManasApp.Common.csproj" />
+    <ProjectReference Include="..\..\Data\ManasApp.Data.Contract\ManasApp.Data.Contract.csproj" />
   </ItemGroup>
 
 </Project>

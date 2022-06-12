@@ -12,7 +12,7 @@ namespace ManasApp.Data.Contract.Models
 
         public PageViewModel()
         {
-            PageSize = 10;
+            PageSize = 15;
             Data = new List<TEntity>();
         }
     }

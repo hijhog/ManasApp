@@ -1,11 +1,9 @@
-﻿namespace ManasApp.Common
-{
-    public class OperationResult
-    {
-        public bool Success { get; set; }
-        public string ErrorMessage { get; set; }
-    }
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
+namespace ManasApp.Mobile.Common.Models
+{
     public class OperationResult<TResult>
     {
         public bool Success { get; set; }

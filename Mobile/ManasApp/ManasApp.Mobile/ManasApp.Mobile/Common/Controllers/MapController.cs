@@ -1,6 +1,8 @@
-﻿using ManasApp.Mobile.Common.Models;
+﻿using ManasApp.Mobile.Common.Extensions;
+using ManasApp.Mobile.Common.Models;
 using ManasApp.Mobile.Data;
 using ManasApp.Mobile.Data.Repositories;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,26 +13,20 @@ namespace ManasApp.Mobile.Common.Controllers
     public class MapController : IMapController
     {
         private readonly MapRepository _mapRepository;
-        public MapController(AppDbContext context)
+        private readonly XHttpClient _http;
+        public MapController(AppDbContext context, XHttpClient xHttpClient)
         {
             _mapRepository = context.MapRepository;
+            _http = xHttpClient;
         }
 
         public async Task<Map> GetAsync(Guid id)
         {
-            var entity = await _mapRepository.GetItemAsync(id);
-            if(entity != null)
-            {
-                return new Map
-                {
-                    Id = entity.Id,
-                    Name = entity.Name,
-                    Latitude = entity.Latitude,
-                    Longitude = entity.Longitude,
-                };
-            }
+            var response = await _http.GetWithTokenAsync($"{AppSettings.WebApiURL}/api/map/get?id={id}");
+            var json = await response.Content.ReadAsStringAsync();
+            var operationResult = JsonConvert.DeserializeObject<OperationResult<Map>>(json);
 
-            return null;
+            return operationResult.Result;
         }
     }
 

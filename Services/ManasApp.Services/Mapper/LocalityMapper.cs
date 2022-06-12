@@ -8,8 +8,10 @@ namespace ManasApp.Services.Mapper
     {
         public LocalityMapper()
         {
-            this.CreateMap<Locality, LocalityDto>();
-            this.CreateMap<LocalityDto, Locality>();
+            this.CreateMap<Locality, LocalityDto>()
+                .ForMember(dest=>dest.StorageData, opt=>opt.Ignore());
+            this.CreateMap<LocalityDto, Locality>()
+                .ForMember(dest => dest.StorageData, opt => opt.Ignore());
         }
     }
 }

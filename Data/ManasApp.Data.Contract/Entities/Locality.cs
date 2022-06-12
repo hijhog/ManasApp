@@ -9,7 +9,7 @@ namespace ManasApp.Data.Contract.Entities
         public string NormalizedName { get; set; }
         public string Description { get; set; }
 
-        public Guid MapId { get; set; }
+        public Guid? MapId { get; set; }
         public Map Map { get; set; }
 
         public ICollection<StorageData> StorageData { get; set; }

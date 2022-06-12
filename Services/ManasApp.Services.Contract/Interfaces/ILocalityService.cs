@@ -1,4 +1,5 @@
 ﻿using ManasApp.Common;
+using ManasApp.Data.Contract.Models;
 using ManasApp.Services.Contract.Models.Locality;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,7 @@ namespace ManasApp.Services.Contract.Interfaces
         Task<OperationResult> DeleteAsync(Guid id);
         Task<OperationResult<LocalityDto>> GetAsync(Guid id);
         OperationResult<IEnumerable<LocalityDto>> GetAll();
+        Task<PageViewModel<LocalityDto>> GetPage(int page);
+        Task<PageViewModel<LocalityDto>> GetSearchPage(string searchText, int page);
     }
 }

@@ -16,6 +16,8 @@ namespace ManasApp.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new LocalityConfiguration());
+            builder.ApplyConfiguration(new MapConfiguration());
+            builder.ApplyConfiguration(new StorageDataConfiguration());
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using ManasApp.Services.Contract.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace ManasApp.WebAPI.Controllers
 {
@@ -9,17 +11,29 @@ namespace ManasApp.WebAPI.Controllers
     [Authorize]
     public class LocalityController : ControllerBase
     {
-        //private readonly ILocalityService _localityService;
+        private readonly ILocalityService _localityService;
 
-        public LocalityController()//ILocalityService localityService)
+        public LocalityController(ILocalityService localityService)
         {
-            //_localityService = localityService;
+            _localityService = localityService;
         }
 
         [HttpGet]
-        public ActionResult Get()
+        public async Task<ActionResult> Get(Guid id)
         {
-            return Ok("secret");
+            return Ok(await _localityService.GetAsync(id));
+        }
+        
+        [HttpGet]
+        public async Task<ActionResult> GetSearch(string searchText,int page)
+        {
+            return Ok(await _localityService.GetSearchPage(searchText, page));
+        }
+
+        [HttpGet]
+        public string Secret()
+        {
+            return "secret string";
         }
     }
 }
