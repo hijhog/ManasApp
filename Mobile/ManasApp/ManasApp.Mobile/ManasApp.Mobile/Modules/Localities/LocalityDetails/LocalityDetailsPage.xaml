@@ -5,34 +5,36 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              Title="Locality Details"
              BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
-    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
-        <Image Aspect="AspectFill" Source="manas.jpg" />
-        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-            <StackLayout x:Name="stackLayout">
-                <Grid Margin="10,10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Label Text="{Binding Name}" Grid.Column="0" HorizontalTextAlignment="Start" 
+    <ScrollView >
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+            <Image Aspect="AspectFill" Source="manas.jpg" />
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                <StackLayout x:Name="stackLayout">
+                    <Grid Margin="10,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Name}" Grid.Column="0" HorizontalTextAlignment="Start" 
                        FontSize="16" FontAttributes="Bold"
                        TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
-                    <Label Text="Map" Grid.Column="1" HorizontalTextAlignment="End" FontAttributes="Bold" 
-                    TextDecorations="Underline" TextColor="blue" IsVisible="{Binding MapId, Converter={StaticResource GuidNullOrEmptyBoolConverter}}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding GotoMapCommand}" />
-                        </Label.GestureRecognizers>
+                        <Label Text="Map" Grid.Column="1" HorizontalTextAlignment="End" FontAttributes="Bold" 
+                            TextDecorations="Underline" TextColor="blue" IsVisible="{Binding MapId, Converter={StaticResource GuidNullOrEmptyBoolConverter}}" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GotoMapCommand}" />
+                            </Label.GestureRecognizers>
 
-                    </Label>
-                </Grid>
-                <Label Text="{Binding Description}" Grid.Row="1" Grid.ColumnSpan="2"
+                        </Label>
+                    </Grid>
+                    <Label Margin="10,5" Text="{Binding Description}" Grid.Row="1" Grid.ColumnSpan="2"
                        TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
+                </StackLayout>
+                <FlexLayout x:Name="flexLayout" Direction="Row" Wrap="Wrap" JustifyContent="SpaceAround">
+                </FlexLayout>
             </StackLayout>
-            
-            
         </StackLayout>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>

@@ -12,7 +12,7 @@ namespace ManasApp.Services.Contract.Interfaces
         Task<OperationResult> AddAsync(LocalityDto dto);
         Task<OperationResult> UpdateAsync(LocalityDto dto);
         Task<OperationResult> DeleteAsync(Guid id);
-        Task<OperationResult<LocalityDto>> GetAsync(Guid id);
+        Task<OperationResult<LocalityDetails>> GetAsync(Guid id);
         OperationResult<IEnumerable<LocalityDto>> GetAll();
         Task<PageViewModel<LocalityDto>> GetPage(int page);
         Task<PageViewModel<LocalityDto>> GetSearchPage(string searchText, int page);

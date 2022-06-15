@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ManasApp.Mobile.Common.Models
+﻿namespace ManasApp.Mobile.Common.Models
 {
+    public class OperationResult
+    {
+        public bool Success { get; set; }
+        public string ErrorMessage { get; set; }
+    }
+
     public class OperationResult<TResult>
     {
         public bool Success { get; set; }

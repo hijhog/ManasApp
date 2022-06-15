@@ -14,6 +14,7 @@ namespace ManasApp.Data.Configurations
             builder.Property(x => x.Description).IsRequired();
 
             builder.HasOne(x => x.Map).WithMany(x => x.Locality).HasForeignKey(x => x.MapId).IsRequired(false);
+            builder.HasMany(x => x.StorageData).WithOne(x => x.Locality).HasForeignKey(x => x.LocalityId).IsRequired();
         }
     }
 }

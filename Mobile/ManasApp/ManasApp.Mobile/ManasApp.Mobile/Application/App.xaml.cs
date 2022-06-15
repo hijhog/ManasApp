@@ -8,7 +8,9 @@ using ManasApp.Mobile.Data;
 using ManasApp.Mobile.Modules.Localities;
 using ManasApp.Mobile.Modules.Localities.LocalityDetails;
 using ManasApp.Mobile.Modules.Login;
+using ManasApp.Mobile.Modules.Main;
 using ManasApp.Mobile.Modules.Map;
+using ManasApp.Mobile.Modules.Settings;
 using SQLite;
 using System;
 using System.Reflection;
@@ -54,6 +56,7 @@ namespace ManasApp.Mobile
             Routing.RegisterRoute("localitydetails", typeof(LocalityDetailsPage));
             Routing.RegisterRoute("maps", typeof(MapPage));
             Routing.RegisterRoute("login", typeof(LoginPage));
+            Routing.RegisterRoute("main", typeof(MainPage));
         }
 
         #region Container
@@ -71,6 +74,8 @@ namespace ManasApp.Mobile
             builder.RegisterType<LocalitiesViewModel>();
             builder.RegisterType<LocalityDetailsViewModel>();
             builder.RegisterType<MapViewModel>();
+            builder.RegisterType<SettingsViewModel>();
+            builder.RegisterType<LoginViewModel>();
             builder.RegisterType<AppShell>();
 
             builder.RegisterType<LocalityController>()

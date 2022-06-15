@@ -1,4 +1,5 @@
 ﻿using ManasApp.Mobile.Common.Controllers;
+using ManasApp.Mobile.Common.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,12 +9,16 @@ using Xamarin.Forms;
 
 namespace ManasApp.Mobile.Modules.Localities.LocalityDetails
 {
-    public class LocalityDetailsViewModel : BaseViewModel,IQueryAttributable 
+    public class LocalityDetailsViewModel : BaseViewModel, IQueryAttributable 
     {
         private readonly ILocalityController _localityController;
         public Command GotoMapCommand { get; set; }
         public ObservableCollection<string> BookInfo { get; set; }
-        public LocalityDetailsViewModel(ILocalityController localityController)
+        public event EventHandler GotoMapChanged;
+        public LocalityDetailsViewModel(
+            ILocalityController localityController,
+            AuthService authService)
+            :base(authService)
         {
             _localityController = localityController;
             GotoMapCommand = new Command(async () => await GotoMap());

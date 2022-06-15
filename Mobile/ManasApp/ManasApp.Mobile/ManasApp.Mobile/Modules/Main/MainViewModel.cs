@@ -11,16 +11,15 @@ namespace ManasApp.Mobile.Modules.Main
     public class MainViewModel : BaseViewModel
     {
         private readonly DropboxService _dropboxService;
-        private readonly AuthService _authService;
 
         public Command DropboxGetCommand { get; set; }
         public Command LoginCommand { get; set; }
         public MainViewModel(
             DropboxService dropboxService,
             AuthService authService)
+            :base(authService)
         {
             _dropboxService = dropboxService;
-            _authService = authService;
 
             DropboxGetCommand = new Command(async () => await DropboxGet());
             LoginCommand = new Command(async () => await Login());

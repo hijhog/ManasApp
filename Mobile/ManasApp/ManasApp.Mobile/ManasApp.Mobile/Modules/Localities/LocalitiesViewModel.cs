@@ -1,5 +1,6 @@
 ﻿using ManasApp.Mobile.Common.Controllers;
 using ManasApp.Mobile.Common.Models;
+using ManasApp.Mobile.Common.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,7 +35,10 @@ namespace ManasApp.Mobile.Modules.Localities
             set { SetProperty(ref _isLoading, value); }
         }
 
-        public LocalitiesViewModel(ILocalityController localityController)
+        public LocalitiesViewModel(
+            ILocalityController localityController,
+            AuthService authService)
+            :base(authService)
         {
             _localityController = localityController;
             Localities = new ObservableCollection<Locality>();            

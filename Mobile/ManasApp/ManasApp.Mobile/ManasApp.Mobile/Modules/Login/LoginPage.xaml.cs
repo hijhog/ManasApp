@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace ManasApp.Mobile.Modules.Login
         public LoginPage()
         {
             InitializeComponent();
+            var viewModel = App.Container.Resolve<LoginViewModel>();
+            BindingContext = viewModel;
         }
     }
 }

@@ -18,28 +18,29 @@
             <Setter Property="Shell.TabBarUnselectedColor"
             Value="AntiqueWhite" />
         </Style>
-    </Shell.Resources>    
-
-
-    <TabBar FlyoutDisplayOptions="AsMultipleItems"
-            >
+    </Shell.Resources>
+    <TabBar FlyoutDisplayOptions="AsMultipleItems">
         <Tab Icon="main_18.png"
-             Title="Main">
+             Title="Main"
+             Route="main">
             <ShellContent Title="Main"
                           ContentTemplate="{DataTemplate main:MainPage}"></ShellContent>
         </Tab>
         <Tab Icon="world_icon.png"
-             Title="Localities">
+             Title="Localities"
+             Route="localities">
             <ShellContent Title="Localities"
                           ContentTemplate="{DataTemplate locality:LocalitiesPage}"></ShellContent>
         </Tab>
         <Tab Icon="map_icon.png"
-             Title="Map">
+             Title="Map"
+             Route="map">
             <ShellContent Title="Map"
                           ContentTemplate="{DataTemplate map:MapPage}"></ShellContent>
         </Tab>
         <Tab Icon="map_icon.png"
-             Title="Settings">
+             Title="Settings"
+             Route="settings">
             <ShellContent Title="Settings"
                           ContentTemplate="{DataTemplate settings:SettingsPage}"></ShellContent>
         </Tab>

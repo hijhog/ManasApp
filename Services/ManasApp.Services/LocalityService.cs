@@ -98,13 +98,13 @@ namespace ManasApp.Services
             return result;
         }
 
-        public async Task<OperationResult<LocalityDto>> GetAsync(Guid id)
+        public async Task<OperationResult<LocalityDetails>> GetAsync(Guid id)
         {
-            var result = new OperationResult<LocalityDto>();
+            var result = new OperationResult<LocalityDetails>();
             try
             {
-                var entity = await _localityRepository.GetAsync(id);
-                result.Result = _mapper.Map<LocalityDto>(entity);
+                var entity = await _localityRepository.GetWithDataStorageById(id);
+                result.Result = _mapper.Map<LocalityDetails>(entity);
                 result.Success = true;
             }
             catch (Exception ex)

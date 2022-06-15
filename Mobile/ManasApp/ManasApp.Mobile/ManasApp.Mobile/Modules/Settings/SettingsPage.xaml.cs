@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Autofac;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,8 +11,8 @@ namespace ManasApp.Mobile.Modules.Settings
         public SettingsPage()
         {
             InitializeComponent();
-
-            BindingContext = new SettingsViewModel();
+            var viewModel = App.Container.Resolve<SettingsViewModel>();
+            BindingContext = viewModel;
         }
     }
 }

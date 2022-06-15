@@ -9,35 +9,51 @@ namespace ManasApp.Mobile.Common.Services
     public class AuthService
     {
         private DateTime _expires;
+        public string UserName { get; private set; }
 
         public AuthService()
         {
             _expires = DateTime.Now;
         }
 
-        public async Task Login(string username, string password)
+        public async Task<OperationResult> Login(string username, string password)
         {
-            using (var httpClient = new HttpClient())
+            var result = new OperationResult();
+            UserName = username;
+            try
             {
-                var identityServerResponse = await httpClient.RequestPasswordTokenAsync(new PasswordTokenRequest
+                using (var httpClient = new HttpClient())
                 {
-                    Address = $"{AppSettings.IdentityURL}/connect/token",
-                    GrantType = "password",
+                    var identityServerResponse = await httpClient.RequestPasswordTokenAsync(new PasswordTokenRequest
+                    {
+                        Address = $"{AppSettings.IdentityURL}/connect/token",
+                        GrantType = "password",
 
-                    ClientId = "manasapp.client",
-                    ClientSecret = "manasapp_secret_key",
-                    Scope = "myApi.read",
+                        ClientId = "manasapp.client",
+                        ClientSecret = "manasapp_secret_key",
+                        Scope = "myApi.read",
 
-                    UserName = username,
-                    Password = password
-                });
+                        UserName = username,
+                        Password = password
+                    });
 
-                if (!identityServerResponse.IsError)
-                {
-                    AccessToken = identityServerResponse.AccessToken;
-                    _expires = DateTime.Now.AddSeconds(identityServerResponse.ExpiresIn);
+                    if (!identityServerResponse.IsError)
+                    {
+                        AccessToken = identityServerResponse.AccessToken;
+                        _expires = DateTime.Now.AddSeconds(identityServerResponse.ExpiresIn);
+                        result.Success = true;
+                    }
+                    else
+                    {
+                        result.ErrorMessage = identityServerResponse.Error;
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                result.ErrorMessage = ex.Message;
+            }
+            return result;
         }
 
         public bool IsLoggedIn { get => DateTime.Now < _expires; }

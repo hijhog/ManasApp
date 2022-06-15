@@ -1,5 +1,6 @@
 ﻿using ManasApp.Mobile.Common.Controllers;
 using ManasApp.Mobile.Common.Controls;
+using ManasApp.Mobile.Common.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +13,10 @@ namespace ManasApp.Mobile.Modules.Map
     {
         private readonly IMapController _mapController;
         public CustomMap Map { get; set; }
-        public MapViewModel(IMapController mapController)
+        public MapViewModel(
+            IMapController mapController,
+            AuthService authService)
+            :base(authService)
         {
             _mapController = mapController;
         }

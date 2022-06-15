@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace ManasApp.Mobile.Common.Models
+namespace ManasApp.Services.Contract.Models.Locality
 {
-    public class Locality
+    public class LocalityDetails : BaseDto
     {
-        public Guid Id { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public DateTime? ModifiedOn { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Guid? MapId { get; set; }
-        public List<StorageDataItem> StorageData { get; set; }
+        public IEnumerable<StorageDataItem> StorageData { get; set; }
     }
 
     public class StorageDataItem
